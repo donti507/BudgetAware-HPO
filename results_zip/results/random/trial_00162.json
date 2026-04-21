@@ -1,0 +1,16 @@
+{
+  "trial_number": 162,
+  "params": {
+    "lr": 0.062279943390238124,
+    "weight_decay": 2.5606641180970403e-06,
+    "batch_size": 128,
+    "dropout": 0.29600962161355054,
+    "optimizer": "Adam",
+    "scheduler": "cosine",
+    "model": "resnet18"
+  },
+  "best_val_acc": 0.8297,
+  "elapsed_s": 440.8683412075043,
+  "slurm_task": 86,
+  "device": "cuda"
+}

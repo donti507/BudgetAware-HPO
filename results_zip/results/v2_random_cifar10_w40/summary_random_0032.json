@@ -1,0 +1,10 @@
+{
+  "sampler": "random",
+  "dataset": "cifar10",
+  "parallel_workers": 40,
+  "n_trials_completed": 101,
+  "best_trial": 10,
+  "best_val_acc": 0.931,
+  "best_params": {},
+  "slurm_task": 32
+}

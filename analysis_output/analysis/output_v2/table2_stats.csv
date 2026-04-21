@@ -1,0 +1,7 @@
+Method A,Method B,U-statistic,p-value,Significant (p<0.05)
+Random Search,Bayesian (TPE),35195.0,0.0,yes
+Random Search,Hyperband,16839.5,0.0,yes
+Random Search,CMA-ES,11104.0,2.4e-05,yes
+Bayesian (TPE),Hyperband,31644.0,0.00022,yes
+Bayesian (TPE),CMA-ES,9798.0,0.0,yes
+Hyperband,CMA-ES,4848.0,0.0,yes

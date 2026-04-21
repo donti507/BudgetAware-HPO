@@ -1,0 +1,18 @@
+{
+  "sampler": "tpe",
+  "dataset": "cifar10",
+  "parallel_workers": 5,
+  "n_trials_completed": 47,
+  "best_trial": 65,
+  "best_val_acc": 0.9248,
+  "best_params": {
+    "lr": 0.0011561503781069603,
+    "weight_decay": 0.0006301821953284911,
+    "batch_size": 128,
+    "dropout": 0.32835252205719995,
+    "optimizer": "AdamW",
+    "scheduler": "cosine",
+    "model": "resnet18"
+  },
+  "slurm_task": 40
+}

@@ -1,0 +1,5 @@
+Method,Trials,Best Acc,Mean Acc,Std,Mean GPU Hours
+Random Search,480,0.931,0.6126,0.2678,0.144
+Bayesian (TPE),328,0.9272,0.82,0.1621,0.077
+Hyperband,160,0.9185,0.8442,0.143,0.05
+CMA-ES,32,0.5057,0.4412,0.0204,0.047

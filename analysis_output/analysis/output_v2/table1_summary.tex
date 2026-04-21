@@ -1,0 +1,14 @@
+\begin{table}
+\caption{HPO method comparison on CIFAR-10 with 40 parallel workers}
+\label{tab:summary}
+\begin{tabular}{lrrrrr}
+\toprule
+Method & Trials & Best Acc & Mean Acc & Std & Mean GPU Hours \\
+\midrule
+Random Search & 480 & 0.9310 & 0.6126 & 0.2678 & 0.1440 \\
+Bayesian (TPE) & 328 & 0.9272 & 0.8200 & 0.1621 & 0.0770 \\
+Hyperband & 160 & 0.9185 & 0.8442 & 0.1430 & 0.0500 \\
+CMA-ES & 32 & 0.5057 & 0.4412 & 0.0204 & 0.0470 \\
+\bottomrule
+\end{tabular}
+\end{table}

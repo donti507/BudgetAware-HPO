@@ -1,0 +1,18 @@
+{
+  "sampler": "hyperband",
+  "dataset": "cifar10",
+  "parallel_workers": 40,
+  "n_trials_completed": 13,
+  "best_trial": 46,
+  "best_val_acc": 0.9066,
+  "best_params": {
+    "lr": 0.003307211222418516,
+    "weight_decay": 1.2100861687848863e-05,
+    "batch_size": 256,
+    "dropout": 0.14341414827246382,
+    "optimizer": "AdamW",
+    "scheduler": "step",
+    "model": "resnet34"
+  },
+  "slurm_task": 25
+}

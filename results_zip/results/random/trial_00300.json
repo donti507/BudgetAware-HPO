@@ -1,0 +1,17 @@
+{
+  "trial_number": 300,
+  "params": {
+    "lr": 0.00019942179942088366,
+    "weight_decay": 1.6270181572596305e-05,
+    "batch_size": 64,
+    "dropout": 0.05122361927084429,
+    "optimizer": "SGD",
+    "scheduler": "plateau",
+    "model": "efficientnet_b1",
+    "momentum": 0.9693164970794366
+  },
+  "best_val_acc": 0.1089,
+  "elapsed_s": 821.3058092594147,
+  "slurm_task": 168,
+  "device": "cuda"
+}

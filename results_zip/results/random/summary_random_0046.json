@@ -1,0 +1,15 @@
+{
+  "sampler": "random",
+  "n_trials_completed": 94,
+  "best_trial": 32,
+  "best_val_acc": 0.9272,
+  "best_params": {
+    "lr": 0.0011648160694772835,
+    "weight_decay": 2.308848872463057e-05,
+    "batch_size": 64,
+    "dropout": 0.029744032862452974,
+    "optimizer": "Adam",
+    "scheduler": "cosine",
+    "model": "resnet18"
+  }
+}

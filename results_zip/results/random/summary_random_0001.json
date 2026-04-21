@@ -1,0 +1,16 @@
+{
+  "sampler": "random",
+  "n_trials_completed": 2,
+  "best_trial": 1,
+  "best_val_acc": 0.14,
+  "best_params": {
+    "lr": 0.0008877474082252488,
+    "weight_decay": 2.026052990673314e-06,
+    "batch_size": 256,
+    "dropout": 0.19268845719756905,
+    "optimizer": "SGD",
+    "scheduler": "step",
+    "model": "efficientnet_b0",
+    "momentum": 0.9209109987385893
+  }
+}

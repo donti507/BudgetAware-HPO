@@ -1,0 +1,18 @@
+{
+  "sampler": "random",
+  "dataset": "cifar100",
+  "parallel_workers": 40,
+  "n_trials_completed": 61,
+  "best_trial": 43,
+  "best_val_acc": 0.7159,
+  "best_params": {
+    "lr": 0.0011648160694772835,
+    "weight_decay": 2.308848872463057e-05,
+    "batch_size": 64,
+    "dropout": 0.029744032862452974,
+    "optimizer": "Adam",
+    "scheduler": "cosine",
+    "model": "resnet18"
+  },
+  "slurm_task": 19
+}

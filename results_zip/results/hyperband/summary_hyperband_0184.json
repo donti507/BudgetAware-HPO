@@ -1,0 +1,15 @@
+{
+  "sampler": "hyperband",
+  "n_trials_completed": 378,
+  "best_trial": 358,
+  "best_val_acc": 0.9165,
+  "best_params": {
+    "lr": 0.003266212119735292,
+    "weight_decay": 0.00024416088977055194,
+    "batch_size": 256,
+    "dropout": 0.483768217188109,
+    "optimizer": "AdamW",
+    "scheduler": "cosine",
+    "model": "resnet34"
+  }
+}

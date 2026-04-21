@@ -1,0 +1,19 @@
+{
+  "sampler": "hyperband",
+  "dataset": "cifar100",
+  "parallel_workers": 40,
+  "n_trials_completed": 6,
+  "best_trial": 29,
+  "best_val_acc": 0.3864,
+  "best_params": {
+    "lr": 0.06845570267272924,
+    "weight_decay": 1.2100861687848863e-05,
+    "batch_size": 256,
+    "dropout": 0.20274558273547494,
+    "optimizer": "SGD",
+    "scheduler": "cosine",
+    "model": "efficientnet_b0",
+    "momentum": 0.8037473215484552
+  },
+  "slurm_task": 32
+}
