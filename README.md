@@ -218,19 +218,6 @@ Running large array jobs can consume GPU hours much faster than expected. Always
 
 ---
 
-## Citation
-
-```bibtex
-@inproceedings{ashraf2026budgetaware,
-  title     = {Parallelism-Aware Hyperparameter Optimization: 
-               Empirical Analysis of Sequential Method Degradation 
-               on HPC Infrastructure},
-  author    = {Ashraf, MD Ali},
-  booktitle = {Proceedings of the AutoML Conference},
-  year      = {2026},
-  publisher = {PMLR}
-}
-```
 
 ---
 
