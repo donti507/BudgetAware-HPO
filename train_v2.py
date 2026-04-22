@@ -43,7 +43,7 @@ logger = logging.getLogger(__name__)
 optuna.logging.set_verbosity(optuna.logging.WARNING)
 
 
-# ── Argument parsing ──────────────────────────────────────────────────────────
+#Argument parsing
 def parse_args():
     parser = argparse.ArgumentParser(description="HPO on CIFAR-10/100")
     parser.add_argument("--sampler", type=str, default="random",
@@ -69,7 +69,7 @@ def parse_args():
     return parser.parse_args()
 
 
-# ── Data ───────────────────────────────────────────────────────────────────────
+# Data
 def get_dataloaders(data_dir, batch_size, num_workers, dataset="cifar10"):
     num_classes = 10 if dataset == "cifar10" else 100
 
@@ -116,7 +116,7 @@ def get_dataloaders(data_dir, batch_size, num_workers, dataset="cifar10"):
     return train_loader, val_loader, num_classes
 
 
-# ── Model factory ──────────────────────────────────────────────────────────────
+# ── Model factory 
 def build_model(model_name, dropout, num_classes=10):
     if model_name == "resnet18":
         m = torchvision.models.resnet18(weights=None)
@@ -145,7 +145,7 @@ def build_model(model_name, dropout, num_classes=10):
     return m
 
 
-# ── Trial objective ────────────────────────────────────────────────────────────
+# Trial objective 
 def make_objective(args):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logger.info(f"Device: {device}")
@@ -153,7 +153,7 @@ def make_objective(args):
         logger.info(f"GPU: {torch.cuda.get_device_name(0)}")
 
     def objective(trial: Trial) -> float:
-        # ── Search space ───────────────────────────────────────────────────────
+        # search space
         lr             = trial.suggest_float("lr", 1e-4, 1e-1, log=True)
         weight_decay   = trial.suggest_float("weight_decay", 1e-6, 1e-2, log=True)
         batch_size     = trial.suggest_categorical("batch_size", [64, 128, 256])
@@ -164,10 +164,10 @@ def make_objective(args):
                             ["resnet18", "resnet34", "efficientnet_b0", "efficientnet_b1"])
         momentum = trial.suggest_float("momentum", 0.8, 0.99) if optimizer_name == "SGD" else 0.9
 
-        # ── GPU start time (for budget tracking) ──────────────────────────────
+        # GPU start time (for budget tracking)
         gpu_start = time.time()
 
-        # ── Build model & data ─────────────────────────────────────────────────
+        # Build model & data 
         train_loader, val_loader, num_classes = get_dataloaders(
             args.data_dir, batch_size, args.num_workers, args.dataset
         )
@@ -192,7 +192,7 @@ def make_objective(args):
         else:
             scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=3)
 
-        # ── Training loop ──────────────────────────────────────────────────────
+        # Training loop 
         best_val_acc    = 0.0
         accuracy_at_epoch = {}
 
@@ -236,10 +236,10 @@ def make_objective(args):
                         f"| val_acc={val_acc:.4f} | best={best_val_acc:.4f} "
                         f"| gpu_h={elapsed_gpu_hours:.3f}")
 
-        # ── Final GPU hours ────────────────────────────────────────────────────
+        #Final GPU hours 
         total_gpu_hours = (time.time() - gpu_start) / 3600
 
-        # ── Save trial metadata ────────────────────────────────────────────────
+        # Save trial metadata
         out = Path(args.output_dir)
         out.mkdir(parents=True, exist_ok=True)
 
@@ -275,7 +275,7 @@ def make_objective(args):
     return objective
 
 
-# ── Create study with retry (fixes SQLite race condition) ─────────────────────
+# ── Create study with retry (fixes SQLite race condition)
 def create_study_with_retry(study_name, storage, sampler, pruner, max_retries=10):
     """
     When 40 workers start simultaneously they all try to create the same
@@ -303,7 +303,7 @@ def create_study_with_retry(study_name, storage, sampler, pruner, max_retries=10
     raise RuntimeError("Failed to create study after max retries")
 
 
-# ── Main ───────────────────────────────────────────────────────────────────────
+# main
 def main():
     args = parse_args()
 
@@ -319,7 +319,7 @@ def main():
 
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
-    # ── Sampler & pruner ──────────────────────────────────────────────────────
+    # Sampler & pruner
     if args.sampler == "random":
         sampler = optuna.samplers.RandomSampler(
             seed=42 + (args.trial_id or 0)
@@ -354,7 +354,7 @@ def main():
                                               n_warmup_steps=5)
         logger.info("Sampler: CMA-ES")
 
-    # ── Create study ──────────────────────────────────────────────────────────
+    # Create study 
     study = create_study_with_retry(
         study_name=args.study_name,
         storage=args.storage,
@@ -362,7 +362,7 @@ def main():
         pruner=pruner,
     )
 
-    # ── Optimize ──────────────────────────────────────────────────────────────
+    # Optimize
     study.optimize(
         make_objective(args),
         n_trials=args.n_trials,
@@ -371,7 +371,7 @@ def main():
         gc_after_trial=True,
     )
 
-    # ── Summary ───────────────────────────────────────────────────────────────
+    # Summary
     completed = [t for t in study.trials
                  if t.state == optuna.trial.TrialState.COMPLETE]
     if not completed:
