@@ -1,8 +1,8 @@
 #!/bin/bash
-# =============================================================================
+
 # One-time environment setup for HPO project on Eagle (PCSS Poznan)
 # Run once: bash setup_env.sh
-# =============================================================================
+
 
 set -e  # exit on first error
 
@@ -11,7 +11,7 @@ echo "  Eagle HPC – HPO Environment Setup"
 echo "  User: $USER | Host: $(hostname) | Date: $(date)"
 echo "======================================================"
 
-# ── Step 1: Check available Python modules ────────────────────────────────────
+# Step 1: Check available Python modules
 echo ""
 echo "[1/6] Checking available Python/CUDA modules..."
 module purge
@@ -19,7 +19,7 @@ module avail python 2>&1 | head -30
 module avail CUDA   2>&1 | head -20
 echo "(Review above and update CUDA module names in hpo_array.slurm if needed)"
 
-# ── Step 2: Install Miniconda (if not present) ────────────────────────────────
+# Step 2: Install Miniconda (if not present) 
 echo ""
 echo "[2/6] Checking for conda..."
 if ! command -v conda &>/dev/null; then
@@ -36,7 +36,7 @@ else
     echo "conda $(conda --version) already available"
 fi
 
-# ── Step 3: Create conda environment ─────────────────────────────────────────
+# Step 3: Create conda environment 
 echo ""
 echo "[3/6] Creating conda environment 'hpo_env'..."
 if conda env list | grep -q "^hpo_env"; then
@@ -46,7 +46,7 @@ else
 fi
 conda activate hpo_env
 
-# ── Step 4: Install PyTorch + dependencies ────────────────────────────────────
+#  Step 4: Install PyTorch + dependencies 
 echo ""
 echo "[4/6] Installing PyTorch (CUDA 12.1) and dependencies..."
 pip install --upgrade pip
@@ -74,7 +74,7 @@ echo ""
 echo "Installed packages:"
 pip list | grep -E "torch|optuna|mlflow|numpy|pandas"
 
-# ── Step 5: Verify GPU access ──────────────────────────────────────────────────
+# Step 5: Verify GPU access 
 echo ""
 echo "[5/6] Verifying PyTorch + CUDA..."
 python - <<'PYEOF'
@@ -93,7 +93,7 @@ import optuna
 print(f"Optuna version  : {optuna.__version__}")
 PYEOF
 
-# ── Step 6: Project directory structure ──────────────────────────────────────
+# Step 6: Project directory structure 
 echo ""
 echo "[6/6] Creating project directories..."
 mkdir -p \
