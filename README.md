@@ -30,6 +30,7 @@ Existing HPO benchmarks compare methods by trial count. We compare them by **GPU
 
 ---
 
+
 ## Key Findings
 
 | Parallelism | Best Method | Reason |
