@@ -1,4 +1,4 @@
-# BudgetAware-HPO: Parallelism-Aware Hyperparameter Optimization at HPC Scale
+# BudgetAware-HPO: Parallelism-Aware Hyperparameter Optimization at HPC Scale  
 
 [![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.6.0-orange.svg)](https://pytorch.org)
